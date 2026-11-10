@@ -8,6 +8,7 @@
     "build": "node scripts/build.mjs",
     "test": "node --test tests/workspace.test.mjs",
     "test:browser": "playwright test",
+    "benchmark": "node --test tests/benchmark.test.mjs",
     "preview": "node scripts/serve.mjs"
   },
   "devDependencies": {"@playwright/test": "1.63.0"}
