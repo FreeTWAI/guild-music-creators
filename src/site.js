@@ -22,7 +22,8 @@
       if (event.source !== window.parent || !['https://freetwai.com', 'https://staging.freetwai.com'].includes(event.origin)
         && !/^http:\/\/(?:127\.0\.0\.1|localhost):\d{1,5}$/.test(event.origin)) return;
       const value = event.data;
-      if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).sort().join(',') !== 'actions,channel,guildKey,protocol,theme,type'
+      if (!value || typeof value !== 'object' || Array.isArray(value)
+        || (() => { const keys = Object.keys(value); return keys.length !== 6 || !['actions', 'channel', 'guildKey', 'protocol', 'theme', 'type'].every(key => keys.includes(key)); })()
         || value.protocol !== protocol || value.type !== 'init' || value.guildKey !== workspace.guild_key
         || typeof value.channel !== 'string' || !/^[a-f0-9-]{36}$/.test(value.channel)
         || !['light', 'night', 'versefolk'].includes(value.theme)
